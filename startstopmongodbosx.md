@@ -1,1 +1,2 @@
-Start and stop MongoDB on OSX
+### Problem
+You want to start and stop MongoDB on OSX
