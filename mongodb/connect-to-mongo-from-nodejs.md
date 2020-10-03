@@ -16,7 +16,7 @@ You want to connect Node.js to MongoDB using the official driver.
 
 [Start MongoDB](https://github.com/skye10/Cook-Y-in-X-minutes/wiki/Start-and-stop-MongoDB-on-OSX) on your machine. We will assume it is serving on `localhost:27017`, the default port. Create a file called `app.js` with the following code:
 
-```
+```javascript
 // File app.js
 
 const MongoClient = require('mongodb').MongoClient; // 1
@@ -24,6 +24,13 @@ const url = 'mongodb://localhost:27017'; // 2
 const mydb = 'testdb'; // 3
 const client = new MongoClient(url, { useUnifiedTopology: true }); // 4
 
+client.connect(function(err) {
+    assert.strictEqual(null, err);
+    console.log("Connected successfully to MongoDB server");
+    const db = client.db(mydb);
+    client.close();
+    console.log("Closed connection to MongoDB");
+});
 ```
 
 
