@@ -16,19 +16,19 @@
 #### Option 1 (Use `brew`)
 
 Start MongoDB:
-```
+```bash
 $ brew services start mongodb-community@4.4
 ```
 
 Stop MongoDB:
-```
+```bash
 $ brew services stop mongodb-community@4.4
 ```
 
 #### Option 2 (run MongoDB manually as a background process)
 
 Start MongoDB:
-```
+```bash
 $ mongod --config /usr/local/etc/mongod.conf --fork
 ```
 
