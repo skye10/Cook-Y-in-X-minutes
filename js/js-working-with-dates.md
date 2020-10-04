@@ -18,7 +18,7 @@ You want to read, write and manipulate dates in Javascript
 ##### Now
 
 ```javascript
-x = Date.now(); // Returns milliseconds from Unix epoch 1970-01-01T00:00:00Z
+x = Date.now(); // Returns milliseconds from Unix epoch 1970-01-01T00:00:00Z (UTC)
 ```
 
 ##### Current date/time
