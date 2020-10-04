@@ -28,9 +28,8 @@ const mydb = 'testdb'; // 3
 const client = new MongoClient(url, { useUnifiedTopology: true }); // 4
 
 client.connect(function(err) {  // 5 
-    assert.strictEqual(null, err);
+		if (err) throw err;
     console.log("Connected successfully to MongoDB server");
-    const db = client.db(mydb);
     client.close();
     console.log("Closed connection to MongoDB");
 });
