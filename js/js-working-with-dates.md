@@ -96,3 +96,30 @@ x.setUTCDate(10);
 // etc ...
 ```
 
+##### Date arithmetic
+
+```javascript
+d = new Date("2020-10-01");
+d1 = new Date(d.valueOf()); // make a copy of d
+d-d1; // 0 milliseconds (date arithmetic)
+d+d1; // ERROR! -> doesn't work, adds the two strings!
+d1-d; // 86400000 millisonds (1 day)
+
+// Increment
+d1.setDate(d1.getDate() + 1); // add 1 day to d1 and update d1
+d1.setDate(d1.getDate() - 3); // substract 3 days from d1 and update d1
+d1.setFullYear(d1.getFullYear() + 1); // add 1 year to d1
+```
+
+##### Format dates
+
+```javascript
+d.toISOString(); // '2020-10-07T02:20:55.140Z'
+d.toISOString().split('T')[0]; // '2020-10-07'
+d.toLocaleString(); // '10/6/2020, 9:20:55 PM'
+```
+
+
+
+
+
