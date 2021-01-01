@@ -1,29 +1,47 @@
-# Git for dummies using multiple accounts
+# Git with multiple accounts
 
 
 ### Linking a Git account to local machine
 
+### Problem
+
+You have multiple Git accounts (e.g. one for work, another for play) and want to organize your local system to keep things separate.
+
+### Strategy
+
+Create a separate private/public key pair for each Git account. Add each Git account in your local ~/.ssh/config file.
+
+### How to do it
+
+These steps have been verified on OS X, should work similarly for a windows / linux system.
+
 #### On Local
-* Generate a ssh key for each of your personas (for example, 1 for your work persona, 1 for personal)
+
+* Generate a ssh key for each of your accounts (for example, one for your work Git account, another for personal account). Example below shows ssh key generation for your work account. 
   
 ```
-ssh-keygen -t rsa -b 4096 -C “rsec@work.com” -f "id_rsec_work"
---------------1---------- -------2----------    -----3-------
+$ ssh-keygen -t rsa -b 4096 -c “me@work” -f "id_work"
+             -------1------    ----2----    -----3---
 
-1. Command
-2. Comment - tag with your persona email
-3. id file name (if not provided, you will be prompted)
+Notes:
+1. Options ("use algorithm RSA with key size 4096 bits")
+2. -c ("comment") good practice: tag with your persona email
+3. -f (file) file that stores the key
 ```
-* Add this key to `~/.ssh/config`
+* The above command will generate two files containing private and the public keys:
+  * 	`~/.ssh/id_work`, the private key
+  * 	`~/.ssh/id_work.pub`, the public key
+* As next step, add this key to `~/.ssh/config`. If this file doesn't exist, create one.
 
 ```
-Host bitbucket.org-rsec                (1)
-    HostName bitbucket.org             (2)
-    User git                           (3)
-    IdentityFile ~/.ssh/id_rsec_work   (4)
-    UseKeychain yes                    (5)
+Host bitbucket.org-rsec           ...1
+    HostName bitbucket.org        ...2
+    User git                      ...3
+    IdentityFile ~/.ssh/id_work   ...4
+    UseKeychain yes               ...5
 
-1. Provide a string to use for Host (for git clone)
+Notes:
+1. Provide a string to use for this Git account
 2. Hostname domain ("bitbucket.org", "github.com", etc)
 3. User is always "git"
 4. The ssh key you created for this Host
@@ -33,7 +51,7 @@ Host bitbucket.org-rsec                (1)
 #### On Git
 * Log on to your git account (on bitbucket.org here, following this example)
 * Copy the ssh key you created on local (you will need to do this for every local machine you want to connect to your git account)
-  * Copy to clipboard `cat ~/.ssh/id_rsec_work.pub | pbcopy .`
+  * Copy to clipboard `cat ~/.ssh/id_work.pub | pbcopy .`
 * Add the ssh key to this account (paste from clipboard)
   * Bitbucket.org: Login page > BitBucketSettings > SSH Keys
   * Github.com: Settings > SSG and GPG keys > Click button “New SSH Key”
@@ -49,3 +67,8 @@ Host bitbucket.org-rsec                (1)
      2. Host string specified in ~/.ssh/config file for this account
      3. Workspace
      4. Repository
+
+
+
+
+
