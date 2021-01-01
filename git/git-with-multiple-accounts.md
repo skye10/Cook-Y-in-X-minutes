@@ -1,8 +1,5 @@
 # Git with multiple accounts
 
-
-### Linking a Git account to local machine
-
 ### Problem
 
 You have multiple Git accounts (e.g. one for work, another for play) and want to organize your local system to keep things separate.
@@ -34,14 +31,14 @@ Notes:
 * As next step, add this key to `~/.ssh/config`. If this file doesn't exist, create one.
 
 ```
-Host bitbucket.org-rsec           ...1
+Host github-at-work               ...1
     HostName bitbucket.org        ...2
     User git                      ...3
     IdentityFile ~/.ssh/id_work   ...4
     UseKeychain yes               ...5
 
 Notes:
-1. Provide a string to use for this Git account
+1. Provide a string to use for this Git account ("github-at-work" in this case)
 2. Hostname domain ("bitbucket.org", "github.com", etc)
 3. User is always "git"
 4. The ssh key you created for this Host
@@ -49,26 +46,21 @@ Notes:
 ```
 
 #### On Git
-* Log on to your git account (on bitbucket.org here, following this example)
+* Log on to your git account
 * Copy the ssh key you created on local (you will need to do this for every local machine you want to connect to your git account)
   * Copy to clipboard `cat ~/.ssh/id_work.pub | pbcopy .`
 * Add the ssh key to this account (paste from clipboard)
   * Bitbucket.org: Login page > BitBucketSettings > SSH Keys
   * Github.com: Settings > SSG and GPG keys > Click button “New SSH Key”
-* Save
-* You can move on to cloning your Git repository
 
-### Git clone
+You are all set and ready to clone and use your Git repository.
 
-     git clone git@bitbucket.org-rsect:saas21/testdriven.io.git
-     -------1----- ---------2--------- ---3-- -------4---------
+#### Git clone
+To clone the repository, use this command:
+
+     git clone git@github-at-work:path/to/repository.git
+               ---------1-------- ---------2------------
      
-     1. Does not change
-     2. Host string specified in ~/.ssh/config file for this account
-     3. Workspace
-     4. Repository
-
-
-
-
-
+     1. Host string specified in ~/.ssh/config file for this account
+     2. Path to the repository you want to clone
+     
