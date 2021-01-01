@@ -20,8 +20,8 @@ Generate a ssh key for each of your accounts (for example, one for your work Git
 $ ssh-keygen -t rsa -b 4096 -c “me@work” -f "id_work"
              -------1------    ----2----    -----3---
 ```
-* Guide:
-  - [1] `-t`  option specifies the algorithm (RSA), `b` specifies the key size (4096 bits)
+* Legend
+  - [1] `-t`  option specifies the algorithm (RSA), `-b` specifies the key size (4096 bits)
   - [2] `-c` option is a comment. As a matter of practice, I tag it with my email (work email in this case)
   - [3] `-f` option is the filename that stores the private/public keys (the public key has an extension `.pub`)
 
@@ -40,7 +40,7 @@ Host github-at-work               ...1
     UseKeychain yes               ...5
 ```
 
-* Guide:
+* Legend
   * [1] Provide a string to use for this Git account ("github-at-work" in this case)
   * [2] Hostname domain ("bitbucket.org", "github.com", etc)
   * [3] User is always "git"
@@ -66,7 +66,7 @@ To clone a repository, use this command on your local system:
      git clone git@github-at-work:path/to/repository.git
                ---------1-------- ---------2------------
 
-* Guide
+* Legend
   * [1] Host string specified in ~/.ssh/config file for this account
   * [2] Path to the repository you want to clone
 
